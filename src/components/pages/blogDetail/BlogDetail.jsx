@@ -3,27 +3,7 @@ import { useParams } from 'react-router-dom';
 import './BlogDetail.css'
 import Data from '../postDetail/PostDetail.json'
 function BlogDetail() {
-    // const [postData, setPostData] = useState([]);
-
     const { thumbnailUrl, id } = useParams()
-
-    // console.log(thumbnailUrl, 'jhk');
-    // useEffect(() => {
-    //     fetchData();
-    // }, []);
-
-    // const fetchData = () => {
-    //     fetch('https://jsonplaceholder.typicode.com/users', {
-    //         method: 'GET',
-    //     })
-    //         .then((response) => response.json())
-    //         .then((data) => {
-    //             setPostData(data);
-    //         })
-    //         .catch((error) => {
-    //             console.error('Error fetching data:', error);
-    //         });
-    // };
     const filterData = Data.filter((item) => {
         console.log(id, thumbnailUrl, 'sdfdsjfklsdjflkdsjflkjsdlkf');
         if (+id === item.id) {
@@ -36,7 +16,6 @@ function BlogDetail() {
 
 
     })
-
     return (
         <div className="user-profile">
             {filterData.map((item) => (
@@ -95,3 +74,20 @@ export default BlogDetail
 
 
 
+ // console.log(thumbnailUrl, 'jhk');
+    // useEffect(() => {
+    //     fetchData();
+    // }, []);
+
+    // const fetchData = () => {
+    //     fetch('https://jsonplaceholder.typicode.com/users', {
+    //         method: 'GET',
+    //     })
+    //         .then((response) => response.json())
+    //         .then((data) => {
+    //             setPostData(data);
+    //         })
+    //         .catch((error) => {
+    //             console.error('Error fetching data:', error);
+    //         });
+    // };
