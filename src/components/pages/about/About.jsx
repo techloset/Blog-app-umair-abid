@@ -2,20 +2,38 @@ import React, { useEffect, useState } from 'react'
 import './About.css';
 
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
 const About = () => {
-    const [createData, setCreateData] = useState({ thumbnailUrl: '', title: '', id: '' })
-    const [tableData, setTableData] = useState([])
-    const params = useParams()
-    const { url } = params
+    const [createData, setCreateData] = useState({ thumbnailUrl: '', title: '', id: '' });
+    const [tableData, setTableData] = useState([]);
+    const [dbData, setDbData] = useState([]);
+    const params = useParams();
+    const { url } = params;
+
     useEffect(() => {
-        setCreateData({ ...createData, thumbnailUrl: url })
-    }, [url])
-    const createPost = () => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('blog-app-backend-production-8fc5.up.railway.app/get/getBlog');
+                setDbData(response.data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        fetchData();
+        setCreateData({ ...createData, thumbnailUrl: url });
+    }, [url]);
+
+    const createPost = async () => {
         if (!createData.thumbnailUrl || !createData.title || !createData.id) {
             alert('Please add all input fields');
             return;
         }
-        setCreateData({ thumbnailUrl: '', title: '', id: '' });
+        await axios.post('blog-app-backend-production-8fc5.up.railway.app/send/createBlog', createData)
+            .catch(error => {
+                console.error('Axios Error:', error);
+            });
+        setCreateData({ title: '', id: '' });
         setTableData([...tableData, createData]);
     };
     return (
@@ -54,6 +72,17 @@ const About = () => {
                         <p className="blog-id">ID: {data.id}</p>
                     </div>
                 ))}
+
+            </div>
+            <div className="blog-container">
+                {dbData.map((data, i) => (
+                    <div className="blog-item" key={i}>
+                        <img className="blog-image" src={data.thumbnailUrl} alt="" />
+                        <h2 className="blog-title">{data.title}</h2>
+                        <p className="blog-id">ID: {data.id}</p>
+                    </div>
+                ))}
+
             </div>
         </div>
     )
@@ -65,22 +94,3 @@ export default About
 
 
 
-
-
-
- // fetch('https://jsonplaceholder.typicode.com/posts', {
-        //     method: 'POST',
-        //     body: JSON.stringify(createData),
-        //     headers: {
-        //         'Content-type': 'application/json; charset=UTF-8',
-        //     },
-        // })
-        //     .then((response) => response.json())
-        //     .then((data) => {
-        //         console.log(data, 'created');
-
-        //         setCreateData({ thumbnailUrl: '', title: '', id: '' });
-
-        //         setTableData([...tableData, data]);
-
-        //     });

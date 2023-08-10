@@ -73,21 +73,3 @@ function BlogDetail() {
 export default BlogDetail
 
 
-
- // console.log(thumbnailUrl, 'jhk');
-    // useEffect(() => {
-    //     fetchData();
-    // }, []);
-
-    // const fetchData = () => {
-    //     fetch('https://jsonplaceholder.typicode.com/users', {
-    //         method: 'GET',
-    //     })
-    //         .then((response) => response.json())
-    //         .then((data) => {
-    //             setPostData(data);
-    //         })
-    //         .catch((error) => {
-    //             console.error('Error fetching data:', error);
-    //         });
-    // };
