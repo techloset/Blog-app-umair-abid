@@ -13,7 +13,7 @@ const About = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('blog-app-backend-production-8fc5.up.railway.app/get/getBlog');
+                const response = await axios.get('https://blog-app-backend-production-8fc5.up.railway.app/get/getBlog');
                 setDbData(response.data);
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -29,7 +29,7 @@ const About = () => {
             alert('Please add all input fields');
             return;
         }
-        await axios.post('blog-app-backend-production-8fc5.up.railway.app/send/createBlog', createData)
+        await axios.post('https://blog-app-backend-production-8fc5.up.railway.app/send/createBlog', createData)
             .catch(error => {
                 console.error('Axios Error:', error);
             });
