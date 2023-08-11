@@ -73,3 +73,39 @@ function BlogDetail() {
 export default BlogDetail
 
 
+
+
+// useEffect(() => {
+//     const fetchData = async () => {
+//         try {
+//             const response = await axios.get('https://blog-app-backend-production-8fc5.up.railway.app/get/getBlog');
+//             setDbData(response.data);
+//             setCreateData({ ...createData, thumbnailUrl: url });
+//         } catch (error) {
+//             console.error('Error fetching data:', error);
+//         }
+//     };
+
+//     fetchData();
+//     setCreateData({ ...createData, thumbnailUrl: url });
+// }, [url, createData.id]);
+
+// const createPost = async () => {
+//     if (!createData.thumbnailUrl || !createData.title) {
+//         alert('Please add all input fields');
+//         return;
+//     }
+
+//     const newId = initialId + 1;
+//     const newData = { ...createData, id: newId };
+
+//     await axios.post('https://blog-app-backend-production-8fc5.up.railway.app/send/createBlog', newData)
+//         .catch(error => {
+//             console.error('Axios Error:', error);
+//         });
+
+//     setCreateData({ ...newData, thumbnailUrl: '' });
+//     setTableData([...tableData, newData]);
+
+//     setInitialId(newId);
+// };

@@ -1,17 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import './Blog.css'
-
+// import axios from 'axios';
 import { Link, useNavigate } from "react-router-dom";
 const Blogs = () => {
     const [postData, setPostData] = useState([]);
-
+    // const [dbData, setDbData] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetchData();
+        // const fetchData = async () => {
+        //     try {
+        //         const response = await axios.get('https://blog-app-backend-production-8fc5.up.railway.app/get/getBlog');
+        //         setDbData(response.data);
+        //     } catch (error) {
+        //         console.error('Error fetching data:', error);
+        //     }
+        // };
+
+        // fetchData();
+        getData();
+
     }, []);
 
-    const fetchData = () => {
+    const getData = () => {
         fetch('https://jsonplaceholder.typicode.com/albums/1/photos', {
             method: 'GET',
         })
@@ -50,6 +61,21 @@ const Blogs = () => {
                     </div>
                 ))}
             </div>
+            {/* <div className='container'>
+
+                <div className="blog-container">
+                    {dbData.map((data, i) => (
+                        <div className="blog-item" key={i}>
+                            <Link to={`/BlogDetail/${encodeURIComponent(data.thumbnailUrl)}/${data.id}`}>
+                                <img className="blog-image" src={data.thumbnailUrl} alt="" />
+                                <h2 className="blog-title">{data.title}</h2>
+                                <p className="blog-id">ID: {data.id}</p>
+                            </Link>
+                        </div>
+                    ))}
+
+                </div>
+            </div> */}
         </div >
     );
 };
